@@ -5,11 +5,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { set } from 'mongoose';
-import toast from 'react-hot-toast';
+import { toast } from "react-hot-toast";
 
 
 function page() {
-  const Router = useRouter();
+  const router = useRouter();
   
   const [user, setUser]= React.useState({
     username:"",
@@ -34,8 +34,7 @@ function page() {
       setLoading(true);
       const response = await axios.post("/api/users/signup", user);
       console.log("Signup success", response.data);
-      Router.push("/login");
-      
+      router.push("/login");      
 
       
     } catch (error:any) {
