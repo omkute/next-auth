@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 
 
 function page() {
-  const router = useRouter();
+  const Router = useRouter();
   
   const [user, setUser]= React.useState({
     username:"",
@@ -34,7 +34,7 @@ function page() {
       setLoading(true);
       const response = await axios.post("/api/users/signup", user);
       console.log("Signup success", response.data);
-      router.push("/login");
+      Router.push("/login");
       
 
       
