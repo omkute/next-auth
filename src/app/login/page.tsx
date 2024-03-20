@@ -7,7 +7,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 
-function page() {
+function Page() {
   const router = useRouter();
   const [user, setUser]= React.useState({
     email:"",
@@ -16,19 +16,19 @@ function page() {
 
   const [disableButton, setDisableButton]= React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  const onLogin = async ()=>{
+  async function onLogin() {
     try {
       setLoading(true);
-      const response =await axios.post("/api/users/login", user);
+      const response = await axios.post("/api/users/login", user);
       console.log("Login Success", response.data);
       toast.success("Login Success");
       router.push("/profile");
-      
-      
+
+
     } catch (error: any) {
-      console.log("Login Failed" , error.message);
+      console.log("Login Failed", error.message);
       toast.error(error.message);
-    }finally{
+    } finally {
       setLoading(false);
     }
   }
@@ -39,7 +39,7 @@ function page() {
     }else{
       setDisableButton(true);
     }
-  })
+  },[user.email.length, user.password.length])
   return (
     <div className=' flex flex-col items-center min-h-screen justify-center'>
       <h1>Login</h1>
@@ -72,4 +72,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

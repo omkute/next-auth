@@ -8,9 +8,9 @@ import { set } from 'mongoose';
 import { toast } from "react-hot-toast";
 
 
-function page() {
-  const router = useRouter();
+function Page() {
   
+  const router = useRouter();
   const [user, setUser]= React.useState({
     username:"",
     email:"",
@@ -20,15 +20,12 @@ function page() {
   const [loading,setLoading]= React.useState(false);
 
   useEffect(()=>{
-    if(user.email.length>0 
-      && user.password.length>0
-      && user.username.length>0)
-      {
+    if(user.email.length > 0 && user.password.length > 0 && user.username.length > 0) {
         setButtonDisable(false)
       }else{
         setButtonDisable(true)
       }
-  })
+  }, [user.email.length, user.password.length, user.username.length])
   const onSignup = async ()=>{
     try {
       setLoading(true);
@@ -89,4 +86,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
